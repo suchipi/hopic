@@ -72,7 +72,7 @@ function cleanStr(str) {
   return str.replaceAll(rootDir, "<rootDir>");
 }
 
-export const transformResult = (result: RunResult) => {
+export const transformResult = (result) => {
   return {
     ...result,
     stdout: cleanStr(result.stdout),
