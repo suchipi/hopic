@@ -100,3 +100,7 @@ stderr: ""
 ## license
 
 MIT
+
+## name?
+
+snapshot = pic, you hope the snapshots match, hope pic, hopic
