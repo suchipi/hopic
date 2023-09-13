@@ -2,6 +2,10 @@
 
 snapshot testing for CLI app output
 
+## installation
+
+download from the github releases tab or get from npm with `npm i -g hopic`
+
 ## usage
 
 write the commands you'd like to execute in a yml file with comments indicating the commands, like so:
