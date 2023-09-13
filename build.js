@@ -27,3 +27,18 @@ for (const targetDir of targetDirs) {
 
   echo(outfile.toString());
 }
+
+const ysLicenseText = $([os.execPath(), "--license"]).stdout.trim();
+const diffLicenseText =
+  `-------------- diff (npm package) --------------` +
+  "\n\n" +
+  readFile("node_modules/diff/LICENSE");
+const hopicLicenseText =
+  `-------------- hopic --------------` + "\n\n" + readFile("LICENSE");
+
+writeFile(
+  "dist/LICENSE_ALL",
+  [ysLicenseText, diffLicenseText, hopicLicenseText].join("\n\n")
+);
+
+echo("./dist/LICENSE_ALL");
