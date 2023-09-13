@@ -1,14 +1,24 @@
 {
   "name": "hopic",
   "version": "0.1.0",
-  "description": "snapshot testing for CLI app output",
+  "description": "snapshot testing for child process output",
   "license": "MIT",
-  "main": "index.js",
-  "types": "types.d.ts",
-  "keywords": [],
+  "main": "npm/index.js",
+  "types": "npm/types.d.ts",
+  "keywords": [
+    "snapshot",
+    "testing",
+    "stdout",
+    "stderr",
+    "bash",
+    "child",
+    "process",
+    "bash",
+    "cli"
+  ],
   "author": "Lily Skye <me@suchipi.com>",
   "scripts": {
-    "build": "./build.fish",
+    "build": "yavascript build.js",
     "bundle": "kame bundle --resolver kame.config.ts",
     "run-sample": "yavascript dist/index.js --config-file sample/config.ts sample/test.yml"
   },
