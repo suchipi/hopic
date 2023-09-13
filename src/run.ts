@@ -8,6 +8,7 @@ export function run(filename: Path, config: Config): "pass" | "fail" {
   const lines = inputContent.split("\n");
 
   const commandLines = lines.filter((line) => line.startsWith(CMD_MARKER));
+  const nonCommandLines = lines.filter((line) => !line.startsWith(CMD_MARKER));
   const results = commandLines.map((line) => {
     const cmd = line.slice(CMD_MARKER.length);
     const { status, signal, stdout, stderr } = exec(config.transformCmd(cmd), {
@@ -34,7 +35,11 @@ export function run(filename: Path, config: Config): "pass" | "fail" {
 
   console.log(formatOutput(filename, outputContent));
 
-  if (config.shouldUpdateSnapshots) {
+  const shouldUpdate =
+    config.shouldUpdateSnapshots ||
+    (nonCommandLines.join("\n").trim() === "" && !config.isCi);
+
+  if (shouldUpdate) {
     if (!config.dryRun) {
       writeFile(filename, outputContent);
     }

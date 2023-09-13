@@ -11,6 +11,7 @@ export type Config = {
   files: Array<Path>;
   dryRun: boolean;
   shouldUpdateSnapshots: boolean;
+  isCi: boolean;
   transformCmd: (cmdline: string) => Array<string>;
   transformResult: (result: RunResult) => any;
 };
@@ -30,6 +31,7 @@ export function parseArgv(): Config {
       configFile: Path,
       u: boolean,
       update: boolean,
+      ci: boolean,
     },
     argv
   );
@@ -69,12 +71,14 @@ export function parseArgv(): Config {
     }
   }
 
-  let shouldUpdateSnapshots = flags.update || flags.u;
+  const shouldUpdateSnapshots = flags.update || flags.u;
+  const isCi = env.CI === "true" || env.CI === "1" || flags.ci;
 
   return {
     files: args.map((arg) => new Path(arg).resolve()),
     dryRun: flags.dryRun,
     shouldUpdateSnapshots,
+    isCi,
     transformCmd,
     transformResult,
   };

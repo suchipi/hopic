@@ -7,3 +7,7 @@ export type RunResult = {
 
 export type TransformCmdFunction = (cmdline: string) => Array<string>;
 export type TransformResultFunction = (result: RunResult) => any;
+
+export function getBinaryPath(): string;
+export const binaryPath: string;
+export const version: string;
