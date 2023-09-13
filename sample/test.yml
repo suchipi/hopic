@@ -1,0 +1,36 @@
+#> ls
+status: 0
+stdout: |
+  LICENSE
+  README.md
+  build.js
+  dist
+  kame.config.ts
+  node_modules
+  package-lock.json
+  package.json
+  sample
+  src
+  tsconfig.json
+  types.d.ts
+stderr: ""
+
+#> which yavascript
+status: 0
+stdout: |
+  <$HOME>/.bin/yavascript
+stderr: ""
+
+#> cat README.md
+status: 0
+stdout: |
+  # Hopic
+
+  snapshot testing for CLI app output
+stderr: ""
+
+#> pwd
+status: 0
+stdout: |
+  <rootDir>
+stderr: ""
