@@ -21,7 +21,7 @@ write the commands you'd like to execute in a yml file with comments indicating 
 Pass that yml file to hopic:
 
 ```
-$ npx hopic myfile.yml
+$ hopic myfile.yml
 ```
 
 It'll execute all the commands and put their output after them:
