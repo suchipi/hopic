@@ -7,12 +7,12 @@ stdout: |
   dist
   kame.config.ts
   node_modules
+  npm
   package-lock.json
   package.json
   sample
   src
   tsconfig.json
-  types.d.ts
 stderr: ""
 
 #> which yavascript
@@ -21,12 +21,12 @@ stdout: |
   <$HOME>/.bin/yavascript
 stderr: ""
 
-#> cat README.md
+#> cat .gitignore
 status: 0
 stdout: |
-  # Hopic
-
-  snapshot testing for CLI app output
+  .DS_Store
+  node_modules
+  dist
 stderr: ""
 
 #> pwd
