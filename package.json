@@ -20,9 +20,10 @@
   "author": "Lily Skye <me@suchipi.com>",
   "repository": "suchipi/hopic",
   "scripts": {
+    "start": "yavascript src/index.ts",
     "build": "yavascript build.ts",
     "bundle": "kame bundle --input src/index.ts --output dist/index.js && cat node_modules/yavascript/dist/primordials-arm64.js dist/index.js > dist/combined.js",
-    "run-sample": "yavascript dist/index.js --config-file sample/config.ts sample/test.yml"
+    "run-sample": "yavascript src/index.ts --config-file sample/config.ts sample/test.yml"
   },
   "devDependencies": {
     "yavascript": "^0.0.10",

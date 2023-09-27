@@ -1,4 +1,4 @@
-import * as Diff from "diff";
+const Diff = require("diff");
 
 export function diff(a: string, b: string): string {
   const diff = Diff.diffLines(a, b);
