@@ -10,6 +10,7 @@ options:
   --config-file (path): Config file (see below)
   --update, -u (boolean): Overwrite existing snapshots
   --ci (boolean): Don't write new snapshots
+  --version, -v (boolean): Show hopic version
   --help, -h (boolean): Show usage text
 
 all boolean options default to false.

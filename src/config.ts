@@ -9,6 +9,7 @@ export type RunResult = {
 
 export type Config =
   | { target: "help" }
+  | { target: "version" }
   | {
       target: "run";
       files: Array<Path>;
@@ -37,9 +38,15 @@ export function parseArgv(): Config {
       ci: boolean,
       help: boolean,
       h: boolean,
+      version: boolean,
+      v: boolean,
     },
     argv
   );
+
+  if (flags.v || flags.version) {
+    return { target: "version" };
+  }
 
   if (flags.h || flags.help) {
     return { target: "help" };
