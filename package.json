@@ -1,6 +1,6 @@
 {
   "name": "hopic",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "snapshot testing for child process output",
   "license": "MIT",
   "main": "npm/index.js",
