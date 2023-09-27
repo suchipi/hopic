@@ -5,7 +5,6 @@ stdout: |
   README.md
   build.js
   dist
-  kame.config.ts
   node_modules
   npm
   package-lock.json

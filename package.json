@@ -20,12 +20,12 @@
   "author": "Lily Skye <me@suchipi.com>",
   "scripts": {
     "build": "yavascript build.js",
-    "bundle": "kame bundle --resolver kame.config.ts",
+    "bundle": "kame bundle --input src/index.ts --output dist/index.js",
     "run-sample": "yavascript dist/index.js --config-file sample/config.ts sample/test.yml"
   },
   "devDependencies": {
     "yavascript": "^0.0.9",
     "diff": "^5.1.0",
-    "kame": "^0.11.0"
+    "kame": "^0.12.0"
   }
 }
