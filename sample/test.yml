@@ -3,7 +3,8 @@ status: 0
 stdout: |
   LICENSE
   README.md
-  build.js
+  build.ts
+  deps
   dist
   node_modules
   npm

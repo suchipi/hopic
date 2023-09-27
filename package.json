@@ -20,12 +20,12 @@
   "author": "Lily Skye <me@suchipi.com>",
   "repository": "suchipi/hopic",
   "scripts": {
-    "build": "yavascript build.js",
-    "bundle": "kame bundle --input src/index.ts --output dist/index.js",
+    "build": "yavascript build.ts",
+    "bundle": "kame bundle --input src/index.ts --output dist/index.js && cat node_modules/yavascript/dist/primordials-arm64.js dist/index.js > dist/combined.js",
     "run-sample": "yavascript dist/index.js --config-file sample/config.ts sample/test.yml"
   },
   "devDependencies": {
-    "yavascript": "^0.0.9",
+    "yavascript": "^0.0.10",
     "diff": "^5.1.0",
     "kame": "^0.12.0"
   }

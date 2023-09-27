@@ -1,0 +1,3 @@
+[submodule "deps/qjsbundle"]
+	path = deps/qjsbundle
+	url = git@github.com:suchipi/qjsbundle.git
