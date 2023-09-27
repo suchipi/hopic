@@ -2,7 +2,8 @@
   "include": [
     "node_modules/yavascript/yavascript.d.ts",
     "src/**/*",
-    "sample/**/*"
+    "sample/**/*",
+    "build.ts"
   ],
 
   "compilerOptions": {
