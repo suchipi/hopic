@@ -18,6 +18,7 @@
     "cli"
   ],
   "author": "Lily Skye <me@suchipi.com>",
+  "repository": "suchipi/hopic",
   "scripts": {
     "build": "yavascript build.js",
     "bundle": "kame bundle --input src/index.ts --output dist/index.js",
