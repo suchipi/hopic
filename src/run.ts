@@ -3,7 +3,10 @@ import { CMD_MARKER } from "./cmdMarker";
 import { formatOutput } from "./formatOutput";
 import { diff } from "./diff";
 
-export function run(filename: Path, config: Config): "pass" | "fail" {
+export function run(
+  filename: Path,
+  config: Config & { target: "run" }
+): "pass" | "fail" {
   const inputContent = readFile(filename);
   const lines = inputContent.split("\n");
 

@@ -7,14 +7,17 @@ export type RunResult = {
   stderr: string;
 };
 
-export type Config = {
-  files: Array<Path>;
-  dryRun: boolean;
-  shouldUpdateSnapshots: boolean;
-  isCi: boolean;
-  transformCmd: (cmdline: string) => Array<string>;
-  transformResult: (result: RunResult) => any;
-};
+export type Config =
+  | { target: "help" }
+  | {
+      target: "run";
+      files: Array<Path>;
+      dryRun: boolean;
+      shouldUpdateSnapshots: boolean;
+      isCi: boolean;
+      transformCmd: (cmdline: string) => Array<string>;
+      transformResult: (result: RunResult) => any;
+    };
 
 export function parseArgv(): Config {
   let sliceOffset: number;
@@ -32,9 +35,20 @@ export function parseArgv(): Config {
       u: boolean,
       update: boolean,
       ci: boolean,
+      help: boolean,
+      h: boolean,
     },
     argv
   );
+
+  if (flags.h || flags.help) {
+    return { target: "help" };
+  }
+
+  const files = args.map((arg) => new Path(arg).resolve());
+  if (files.length === 0) {
+    return { target: "help" };
+  }
 
   let configMod: any = {};
   if (flags.configFile) {
@@ -71,11 +85,14 @@ export function parseArgv(): Config {
     }
   }
 
-  const shouldUpdateSnapshots = flags.update || flags.u;
-  const isCi = env.CI === "true" || env.CI === "1" || flags.ci;
+  const shouldUpdateSnapshots = flags.update || flags.u || false;
+  const isCi = Object.hasOwn(flags, "ci")
+    ? flags.ci
+    : env.CI === "true" || env.CI === "1";
 
   return {
-    files: args.map((arg) => new Path(arg).resolve()),
+    target: "run",
+    files,
     dryRun: flags.dryRun,
     shouldUpdateSnapshots,
     isCi,
