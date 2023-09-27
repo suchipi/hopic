@@ -4,6 +4,7 @@
   "description": "snapshot testing for child process output",
   "license": "MIT",
   "main": "npm/index.js",
+  "bin": "npm/cli.js",
   "types": "npm/types.d.ts",
   "keywords": [
     "snapshot",
