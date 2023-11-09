@@ -32,7 +32,8 @@ export function parseArgv(): Config {
   const { args, flags } = parseScriptArgs(
     {
       dryRun: boolean,
-      configFile: Path,
+      // TODO why doesn't this work with "Path"?
+      configFile: string,
       u: boolean,
       update: boolean,
       ci: boolean,
@@ -52,14 +53,17 @@ export function parseArgv(): Config {
     return { target: "help" };
   }
 
-  const files = args.map((arg) => new Path(arg).resolve());
+  const files = args.map((arg) => Path.normalize(arg));
   if (files.length === 0) {
     return { target: "help" };
   }
 
   let configMod: any = {};
   if (flags.configFile) {
-    configMod = require(flags.configFile);
+    const configFilePath = Path.isAbsolute(flags.configFile)
+      ? flags.configFile
+      : Path.normalize(pwd(), flags.configFile);
+    configMod = require(configFilePath.toString());
   }
 
   let transformCmd = (cmdline: string) => ["bash", "-c", cmdline];
