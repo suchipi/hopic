@@ -26,8 +26,9 @@
     "run-sample": "yavascript src/index.ts --config-file sample/config.ts sample/test.yml"
   },
   "devDependencies": {
-    "yavascript": "^0.0.10",
+    "@suchipi/quickjs": "^0.6.0",
     "diff": "^5.1.0",
-    "kame": "^0.12.0"
+    "kame": "^0.12.0",
+    "yavascript": "^0.0.11"
   }
 }
