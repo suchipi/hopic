@@ -6,7 +6,7 @@ const rootDir = new Path(__dirname);
 if (exists("dist")) {
   remove("dist");
 }
-ensureDir("dist");
+mkdirp("dist");
 
 const ysLicenseText = $([os.execPath(), "--license"]).stdout.trim();
 const diffLicenseText =
@@ -18,7 +18,7 @@ const hopicLicenseText =
 
 writeFile(
   "dist/LICENSE_ALL",
-  [ysLicenseText, diffLicenseText, hopicLicenseText].join("\n\n")
+  [ysLicenseText, diffLicenseText, hopicLicenseText].join("\n\n"),
 );
 echo("./dist/LICENSE_ALL");
 
@@ -50,13 +50,13 @@ const { platform, platforms } = JSON.parse(quickjsInfoJson) as {
 const quickjsRun = rootDir.concat(
   "node_modules/@suchipi/quickjs/build",
   platform.name,
-  "bin/quickjs-run"
+  "bin/quickjs-run",
 );
 
 const fileToBytecodeJs = rootDir.concat(
   "node_modules/@suchipi/quickjs/build",
   platform.name,
-  "bin/file-to-bytecode.js"
+  "bin/file-to-bytecode.js",
 );
 
 const byteCodePath = rootDir.concat("dist/combined.bin");
@@ -66,16 +66,16 @@ for (const targetPlatform of platforms) {
   const qjsbootstrapBytecode = rootDir.concat(
     "node_modules/@suchipi/quickjs/build",
     targetPlatform.name,
-    "bin/qjsbootstrap-bytecode" + targetPlatform.programSuffix
+    "bin/qjsbootstrap-bytecode" + targetPlatform.programSuffix,
   );
 
   const targetPath = rootDir.concat(
     "dist",
     targetPlatform.name,
-    "hopic" + targetPlatform.programSuffix
+    "hopic" + targetPlatform.programSuffix,
   );
 
-  ensureDir(dirname(targetPath));
+  mkdirp(dirname(targetPath));
 
   // TODO yavascript cat needs to handle this case properly
   exec([
@@ -83,15 +83,16 @@ for (const targetPlatform of platforms) {
     "-c",
     `
       cat ${quote(qjsbootstrapBytecode)} ${quote(byteCodePath)} > ${quote(
-      targetPath
-    )}
+        targetPath,
+      )}
     `,
   ]);
 
   chmod(
+    "set",
     // @ts-ignore TODO looks like chmod is typed incorrectly; this should allow partial objects
     { ug: "rwx", o: "rx" },
-    targetPath
+    targetPath,
   );
 }
 
@@ -100,7 +101,7 @@ const tarGzsPath = rootDir.concat("dist");
 
 for (const targetPlatform of platforms) {
   const dir = tarGzsPath.concat(targetPlatform.name);
-  copy("dist/LICENSE_ALL", Path.join(dir, "LICENSE"));
+  copy("dist/LICENSE_ALL", dir.concat("LICENSE"));
 
   try {
     cd(dir);
